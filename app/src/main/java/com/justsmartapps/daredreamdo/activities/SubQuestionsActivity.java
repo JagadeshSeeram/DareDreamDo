@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,13 +22,16 @@ import android.widget.TextView;
 
 import com.justsmartapps.daredreamdo.R;
 
-public class SubQuestionsActivity extends Activity {
+public class SubQuestionsActivity extends AppCompatActivity {
 	private ArrayList<Question> qualityQuestions;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listview_layout);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		toolbar.setTitle("Questions");
 		Button done = (Button) findViewById(R.id.done_button);
 		done.setVisibility(View.VISIBLE);
 		done.setOnClickListener(new OnClickListener() {
@@ -47,193 +52,85 @@ public class SubQuestionsActivity extends Activity {
 			}
 		});
 		ListView listView = (ListView) findViewById(R.id.questions_header_list);
-		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-			int questionInt = extras.getInt("QUESTION");
-			String title = extras.getString("TITLE");
-			getActionBar().setTitle(title);
-			if (questionInt == 0) {
-				qualityQuestions = prepareQualityQuestions();
-			} else if (questionInt == 1) {
-				qualityQuestions = prepareEnggQuestions();
-			} else if (questionInt == 2) {
-				qualityQuestions = prepareProductionQuestions();
-			} else if (questionInt == 3) {
-				qualityQuestions = preparePPGQuestions();
-			} else if (questionInt == 4) {
-				qualityQuestions = prepareHRQuestions();
-			} else if (questionInt == 5) {
-				qualityQuestions = prepareAdminQuestions();
-			}
-		}
-
+		qualityQuestions = prepareQualityQuestions();
 		QuestionAdapter adapter = new QuestionAdapter(qualityQuestions);
 		listView.setAdapter(adapter);
 	}
 
-	private ArrayList<Question> prepareProductionQuestions() {
-		ArrayList<Question> questions = new ArrayList<Question>();
-		Question one = new Question();
-		one.question = "1. What is the shade in which we are not reaching PRSL in last 5 Months in SBU?";
-		one.answers[0] = "Golden Brown";
-		one.answers[1] = "Lemon Yellow";
-		one.answers[2] = "PGE EB1";
-		one.answers[3] = "AMC Magenta";
-		one.rightAnswer = 1;
-		questions.add(one);
-
-		Question two = new Question();
-		two.question = "2. What is the Trade Plan Achievement% in the year 14 - 15 ?";
-		two.answers[0] = "94.47%";
-		two.answers[1] = "93.01%";
-		two.answers[2] = "92.10%";
-		two.answers[3] = "98.0%";
-		two.rightAnswer = 1;
-		questions.add(two);
-
-		Question three = new Question();
-		three.question = "3. What is Trade PSI % for the Year 14 -15?";
-		three.answers[0] = "96.5%";
-		three.answers[1] = "99.82%";
-		three.answers[2] = "100%";
-		three.answers[3] = "98.99%";
-		three.rightAnswer = 2;
-		questions.add(three);
-
-		Question four = new Question();
-		four.question = "4.	For year 14 -15 which section had met the highest PRSL";
-		four.answers[0] = "SPB";
-		four.answers[1] = "EPS";
-		four.answers[2] = "Stiff";
-		four.answers[3] = "IPU";
-		four.rightAnswer = 3;
-		questions.add(four);
-
-		Question five = new Question();
-		five.question = "5.	What is the Highest plant volume produced per month in the year 14 � 15?";
-		five.answers[0] = "8200 KL";
-		five.answers[1] = "8250 KL";
-		five.answers[2] = "8327 KL";
-		five.answers[3] = "8400 KL";
-		five.rightAnswer = 3;
-		questions.add(five);
-
-		Question six = new Question();
-		six.question = "6. Plant Highest achieved PRSL in 14-15?";
-		six.answers[0] = "98.95";
-		six.answers[1] = "99.14";
-		six.answers[2] = "98.91";
-		six.answers[3] = "98.89";
-		six.rightAnswer = 1;
-		questions.add(six);
-		return questions;
-	}
-
-	private ArrayList<Question> prepareAdminQuestions() {
-		ArrayList<Question> questions = new ArrayList<Question>();
-		Question one = new Question();
-		one.question = "1. Number of detentions in 2014-15?";
-		one.answers[0] = "51";
-		one.answers[1] = "58";
-		one.answers[2] = "55";
-		one.answers[3] = "52";
-		one.rightAnswer = 4;
-		questions.add(one);
-
-		Question two = new Question();
-		two.question = "2.	What is the truck turnaround time (TTAT) for 2014-15?";
-		two.answers[0] = "8.12Hrs";
-		two.answers[1] = "8.19Hrs";
-		two.answers[2] = "8.25Hrs";
-		two.answers[3] = "8.30Hrs";
-		two.rightAnswer = 1;
-		questions.add(two);
-
-		Question three = new Question();
-		three.question = "3. What is the GR compliance(%) for the year of 2014-15?";
-		three.answers[0] = "92.8%";
-		three.answers[1] = "91.7%";
-		three.answers[2] = "93%";
-		three.answers[3] = "95.4%";
-		three.rightAnswer = 2;
-		questions.add(three);
-
-		Question four = new Question();
-		four.question = "4.	What is the approximate FLL of PAT plant in 14-15 against target of 2%?";
-		four.answers[0] = "2.54%";
-		four.answers[1] = "3.11%";
-		four.answers[2] = "2.69%";
-		four.answers[3] = "2.81%";
-		four.rightAnswer = 1;
-		questions.add(four);
-
-		Question five = new Question();
-		five.question = "5.	What is the percentage of same day unloading in 14-15?";
-		five.answers[0] = "90%";
-		five.answers[1] = "91.2%";
-		five.answers[2] = "92.6%";
-		five.answers[3] = "93.1%";
-		five.rightAnswer = 2;
-		questions.add(five);
-
-		return questions;
-	}
 
 	private ArrayList<Question> prepareQualityQuestions() {
 		ArrayList<Question> questions = new ArrayList<Question>();
 		Question one = new Question();
-		one.question = "1. What is the No of NCIP figure in the Year 14-15?";
-		one.answers[0] = "21";
-		one.answers[1] = "23";
-		one.answers[2] = "22";
-		one.answers[3] = "26";
+		one.question = "1. Number of TSD Phase in Chennai Express?";
+		one.answers[0] = "3";
+		one.answers[1] = "4";
+		one.answers[2] = "5";
+		one.answers[3] = "Single Pass";
 		one.rightAnswer = 1;
 		questions.add(one);
 
 		Question two = new Question();
-		two.question = "2. The Plant Average QRI for the Year 14-15 stands at? ";
-		two.answers[0] = "9.77";
-		two.answers[1] = "9.75";
-		two.answers[2] = "9.85";
-		two.answers[3] = "9.64";
+		two.question = "2. Application of Bar coding is?";
+		two.answers[0] = "True";
+		two.answers[1] = "False";
+		two.answers[2] = "Dont Know";
+		two.answers[3] = "Incorrect Question";
 		two.rightAnswer = 1;
 		questions.add(two);
 
 		Question three = new Question();
-		three.question = "3. Give the number of statutory legal notices in the year 14 � 15?";
-		three.answers[0] = "4";
-		three.answers[1] = "6";
-		three.answers[2] = "1";
-		three.answers[3] = "0";
+		three.question = "3. RI not applicable for Emulsions?";
+		three.answers[0] = "True";
+		three.answers[1] = "False";
+		three.answers[2] = "Dont Know";
+		three.answers[3] = "Incorrect Question";
 		three.rightAnswer = 3;
 		questions.add(three);
 
 		Question four = new Question();
-		four.question = "4.	Hygiene Audit score in 13 �14?";
-		four.answers[0] = "91";
-		four.answers[1] = "100";
-		four.answers[2] = "96";
-		four.answers[3] = "none";
+		four.question = "4.	Which Plant is highest OEE?";
+		four.answers[0] = "Kasna";
+		four.answers[1] = "Sri";
+		four.answers[2] = "PAT";
+		four.answers[3] = "Rothak";
 		four.rightAnswer = 1;
 		questions.add(four);
 
 		Question five = new Question();
-		five.question = "5.	Number of Frozen batch at PAT Linked OPCs at 14 - 15?";
-		five.answers[0] = "45";
-		five.answers[1] = "47";
-		five.answers[2] = "6";
-		five.answers[3] = "10";
+		five.question = "5.	Bar Code is not applicable for Bulk packs?";
+		five.answers[0] = "True";
+		five.answers[1] = "False";
+		five.answers[2] = "Dont Know";
+		five.answers[3] = "Incorrect Question";
 		five.rightAnswer = 3;
 		questions.add(five);
 
 		Question six = new Question();
-		six.question = "6. What is the target of Plant Average QRI?";
-		six.answers[0] = "9.55";
-		six.answers[1] = "9.85";
-		six.answers[2] = "9.86";
-		six.answers[3] = "9.91";
+		six.question = "6. VMI is implemented in which Plant?";
+		six.answers[0] = "Kasna";
+		six.answers[1] = "Sri";
+		six.answers[2] = "PAT";
+		six.answers[3] = "Rothak";
 		six.rightAnswer = 2;
 		questions.add(six);
+
+		Question seven = new Question();
+		seven.question = "7. VMI is implemented in which Plant?";
+		seven.answers[0] = "True";
+		seven.answers[1] = "False";
+		seven.answers[2] = "Dont Know";
+		seven.answers[3] = "Incorrect Question";
+		seven.rightAnswer = 2;
+		questions.add(seven);
+
+		Question eight = new Question();
+		eight.question = "8. SETU increases change over time?";
+		eight.answers[0] = "True";
+		eight.answers[1] = "False";
+		eight.answers[2] = "Dont Know";
+		eight.answers[3] = "Incorrect Question";
+		eight.rightAnswer = 2;
+		questions.add(eight);
 		return questions;
 	}
 
@@ -310,55 +207,6 @@ public class SubQuestionsActivity extends Activity {
 		return questions;
 	}
 
-	private ArrayList<Question> prepareEnggQuestions() {
-		ArrayList<Question> questions = new ArrayList<Question>();
-		Question one = new Question();
-		one.question = "1. What is the uptime target of Packing Machine for the year 14- 15?";
-		one.answers[0] = "96.34";
-		one.answers[1] = "95.0";
-		one.answers[2] = "99.0";
-		one.answers[3] = "100";
-		one.rightAnswer = 3;
-		questions.add(one);
-
-		Question two = new Question();
-		two.question = "2. What is the DC uptime value in the year 14 � 15?";
-		two.answers[0] = "99.80";
-		two.answers[1] = "96.12";
-		two.answers[2] = "92.86";
-		two.answers[3] = "99.99";
-		two.rightAnswer = 2;
-		questions.add(two);
-
-		Question three = new Question();
-		three.question = "3. What is the target for More than 8 Hrs Breakdown for the year 14 � 15?";
-		three.answers[0] = "6";
-		three.answers[1] = "2";
-		three.answers[2] = "0";
-		three.answers[3] = "15";
-		three.rightAnswer = 1;
-		questions.add(three);
-
-		Question four = new Question();
-		four.question = "4.	What is the Target value for PM adherence for the Year 14 -15?";
-		four.answers[0] = "96%";
-		four.answers[1] = "100%";
-		four.answers[2] = "99%";
-		four.answers[3] = "99.99%";
-		four.rightAnswer = 2;
-		questions.add(four);
-
-		Question five = new Question();
-		five.question = "5.	What is the Plant SPC target for the Year 14 � 15?";
-		five.answers[0] = "105.6";
-		five.answers[1] = "110";
-		five.answers[2] = "112.3";
-		five.answers[3] = "114.10";
-		five.rightAnswer = 1;
-		questions.add(five);
-
-		return questions;
-	}
 
 	class QuestionAdapter extends BaseAdapter {
 

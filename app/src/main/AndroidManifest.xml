@@ -9,14 +9,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity">
+
+        </activity>
+        <activity android:name=".activities.CategoryActivity" />
+        <activity android:name=".activities.HelpActivity"
+            android:theme="@style/AppTheme_NoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CategoryActivity" />
-        <activity android:name=".activities.HelpActivity"></activity>
     </application>
 
 </manifest>

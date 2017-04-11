@@ -1,8 +1,12 @@
 package com.justsmartapps.daredreamdo.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,111 +19,134 @@ import com.justsmartapps.daredreamdo.R;
 
 import java.util.ArrayList;
 
-public class QuestionsActivity extends Activity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.listview_layout);
-		ListView list = (ListView) findViewById(R.id.questions_header_list);
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-		final ArrayList<QAItem> qaItems = prepareData();
-		QuestionAdapter questionAdapter = new QuestionAdapter(qaItems);
-		list.setAdapter(questionAdapter);
-		list.setOnItemClickListener(new OnItemClickListener() {
+public class QuestionsActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.listview_layout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Questions");
+        ListView list = (ListView) findViewById(R.id.questions_header_list);
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+        final ArrayList<QAItem> qaItems = prepareData();
+        QuestionAdapter questionAdapter = new QuestionAdapter(qaItems);
+        list.setAdapter(questionAdapter);
+        list.setOnItemClickListener(new OnItemClickListener() {
 
-				QAItem qaItem = qaItems.get(position);
-				Intent intent = new Intent(QuestionsActivity.this,
-						SubQuestionsActivity.class);
-				intent.putExtra("QUESTION", position);
-				intent.putExtra("TITLE", qaItem.title);
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
 
-				startActivity(intent);
-			}
-		});
-	}
+                QAItem qaItem = qaItems.get(position);
+                Intent intent = new Intent(QuestionsActivity.this,
+                        SubQuestionsActivity.class);
+                intent.putExtra("QUESTION", position);
+                intent.putExtra("TITLE", qaItem.title);
 
-	class QuestionAdapter extends BaseAdapter {
+                startActivity(intent);
+            }
+        });
+    }
 
-		private ArrayList<QAItem> qualityQuestions;
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
-		public QuestionAdapter(ArrayList<QAItem> qaItems) {
-			this.qualityQuestions = qaItems;
-		}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
+                // if this doesn't work as desired, another possibility is to call `finish()` here.
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-		@Override
-		public int getCount() {
-			return qualityQuestions.size();
-		}
+    class QuestionAdapter extends BaseAdapter {
 
-		@Override
-		public Object getItem(int position) {
-			return qualityQuestions.get(position);
-		}
+        private ArrayList<QAItem> qualityQuestions;
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+        public QuestionAdapter(ArrayList<QAItem> qaItems) {
+            this.qualityQuestions = qaItems;
+        }
 
-		class ViewHolder {
-			TextView question;
-		}
+        @Override
+        public int getCount() {
+            return qualityQuestions.size();
+        }
 
-		@Override
-		public View getView(final int position, View convertView,
-				ViewGroup parent) {
-			ViewHolder holder = null;
-			if (convertView == null) {
-				holder = new ViewHolder();
-				convertView = getLayoutInflater().inflate(R.layout.header_item,
-						parent, false);
-				holder.question = (TextView) convertView
-						.findViewById(R.id.question_header);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-			QAItem question = qualityQuestions.get(position);
-			holder.question.setText(question.title);
-			return convertView;
-		}
+        @Override
+        public Object getItem(int position) {
+            return qualityQuestions.get(position);
+        }
 
-	}
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
 
-	private ArrayList<QAItem> prepareData() {
-		ArrayList<QAItem> qaItems = new ArrayList<QAItem>();
-		for (int i = 0; i < 6; i++) {
-			QAItem qaItem = new QAItem();
-			qaItem.id = i;
-			switch (i) {
-			case 0:
-				qaItem.title = "Quality";
-				break;
-			case 1:
-				qaItem.title = "Engineering";
-				break;
-			case 2:
-				qaItem.title = "Production";
-				break;
-			case 3:
-				qaItem.title = "PPG AP";
-				break;
-			case 4:
-				qaItem.title = "HR";
-				break;
-			case 5:
-				qaItem.title = "Admin";
-				break;
-			default:
-				break;
-			}
-			qaItems.add(qaItem);
-		}
-		return qaItems;
-	}
+        class ViewHolder {
+            TextView question;
+        }
+
+        @Override
+        public View getView(final int position, View convertView,
+                            ViewGroup parent) {
+            ViewHolder holder = null;
+            if (convertView == null) {
+                holder = new ViewHolder();
+                convertView = getLayoutInflater().inflate(R.layout.header_item,
+                        parent, false);
+                holder.question = (TextView) convertView
+                        .findViewById(R.id.question_header);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            QAItem question = qualityQuestions.get(position);
+            holder.question.setText(question.title);
+            return convertView;
+        }
+
+    }
+
+    private ArrayList<QAItem> prepareData() {
+        ArrayList<QAItem> qaItems = new ArrayList<QAItem>();
+        for (int i = 0; i < 6; i++) {
+            QAItem qaItem = new QAItem();
+            qaItem.id = i;
+            switch (i) {
+                case 0:
+                    qaItem.title = "Quality";
+                    break;
+                case 1:
+                    qaItem.title = "Engineering";
+                    break;
+                case 2:
+                    qaItem.title = "Production";
+                    break;
+                case 3:
+                    qaItem.title = "PPG AP";
+                    break;
+                case 4:
+                    qaItem.title = "HR";
+                    break;
+                case 5:
+                    qaItem.title = "Admin";
+                    break;
+                default:
+                    break;
+            }
+            qaItems.add(qaItem);
+        }
+        return qaItems;
+    }
 
 }

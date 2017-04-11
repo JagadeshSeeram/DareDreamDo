@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -8,41 +9,78 @@
     tools:context="com.justsmartapps.daredreamdo.activities.MainActivity">
 
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
     <TextView
+        android:id="@+id/first_item"
         style="@style/HeaderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/first_bg"
+        android:minLines="2"
         android:text="MFG/Technology improvement project" />
 
     <TextView
+        android:id="@+id/second_item"
         style="@style/HeaderText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/second_bg"
+        android:minLines="2"
         android:text="Bar Code" />
 
     <TextView
+        android:id="@+id/three_item"
         style="@style/HeaderText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/three_bg"
+        android:minLines="2"
         android:text="EAM/EWM" />
 
     <TextView
+        android:id="@+id/four_item"
         style="@style/HeaderText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/four_bg"
+        android:minLines="2"
         android:text="OEE Emulsion Resin RI" />
 
     <TextView
+        android:id="@+id/five_item"
         style="@style/HeaderText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/five_bg"
+        android:minLines="2"
         android:text="PWB" />
 
     <TextView
+        android:id="@+id/six_item"
         style="@style/HeaderText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/six_bg"
+        android:minLines="2"
         android:text="VMI Powder Tanker" />
+
+    <TextView
+        android:id="@+id/seven_item"
+        style="@style/HeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/six_bg"
+        android:minLines="2"
+        android:text="Questions" />
 
 
 </LinearLayout>

@@ -1,32 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <ScrollView
 
-            <ImageView
-                android:id="@+id/category_image"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:id="@+id/image_info"
-                android:text="Watch our Process improvement and VUCA PREPAREDNESS and plan for FY17-18 in our INSCAPE Stall." />
-        </LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,88 +28,157 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Dream" />
+                <ImageView
+                    android:id="@+id/category_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/first" />
 
                 <TextView
-                    android:id="@+id/dream_info"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/image_info"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn" />
-
+                    android:padding="10dp"
+                    android:text="Watch our Process improvement and VUCA PREPAREDNESS and plan for FY17-18 in our INSCAPE Stall." />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Do" />
 
-                <TextView
-                    android:id="@+id/do_info"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_view"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn" />
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/first"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dream"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/dream_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/first"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Do"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/do_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/first"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dare"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/dare_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/first"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dominate"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/dominate_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Dare" />
-
-                <TextView
-                    android:id="@+id/dare_info"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content"
-                    android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="Dominate" />
-
-                <TextView
-                    android:id="@+id/dominate_info"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_height="wrap_content"
-                    android:text="adjhak sdka jkkldf sdfsfsdfsdf sjdfsjdfj jfdkgfdgskdlfgsjdgrieu kdsf nsn" />
-
-            </LinearLayout>
-
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

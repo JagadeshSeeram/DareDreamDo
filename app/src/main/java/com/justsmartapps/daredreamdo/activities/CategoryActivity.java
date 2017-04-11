@@ -1,12 +1,19 @@
 package com.justsmartapps.daredreamdo.activities;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.justsmartapps.daredreamdo.R;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -22,13 +29,22 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         dareInfoTV = (TextView) findViewById(R.id.dare_info);
         doInfoTV = (TextView) findViewById(R.id.do_info);
         dreamInfoTV = (TextView) findViewById(R.id.dream_info);
         dominateInfoTV = (TextView) findViewById(R.id.dominate_info);
         cateInfo = (ImageView) findViewById(R.id.category_image);
         imageInfoTV = (TextView) findViewById(R.id.image_info);
+        YoYo.with(Techniques.FadeIn)
+                .duration(300)
+                .repeat(Integer.MAX_VALUE)
+                .playOn(imageInfoTV);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         setUpData();
+
     }
 
     private void setUpData() {
@@ -36,10 +52,11 @@ public class CategoryActivity extends AppCompatActivity {
         if(extras != null){
             category = extras.getInt("CATEGORY");
         }
-        String imageInfo = null,dareInfoText = null,doInfoText = null, dreamInfoText = null, dominateInfoText = null;
+        String imageInfo = null,dareInfoText = null,doInfoText = null, dreamInfoText = null, dominateInfoText = null,title = null;
         switch (category){
             // MFG Technology
             case 1:
+                title = "";
                 dareInfoText = "To Fly High.";
                 doInfoText = "Quantum leap with acceleration leads to exponential changes in results with extra ordinary ease.";
                 dreamInfoText = "Small seeds of thought lead to mighty dreams.";
@@ -95,11 +112,29 @@ public class CategoryActivity extends AppCompatActivity {
                 break;
 
         }
+        setTitle(title);
         dareInfoTV.setText(dareInfoText);
         doInfoTV.setText(doInfoText);
         dreamInfoTV.setText(dreamInfoText);
         dominateInfoTV.setText(dominateInfoText);
         imageInfoTV.setText(imageInfo);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
+                // if this doesn't work as desired, another possibility is to call `finish()` here.
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
